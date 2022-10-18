@@ -8,7 +8,9 @@
                     <h5 class="mb-0">Add Member</h5>
                 </div>
                 <div class="card-body">
-                    <form action="">
+
+                    <form action="{{ route('member.store') }}" method="POST">
+                        @csrf
                         <div class="row">
                             <h6>Personal Information</h6>
                             <div class="col-6">
@@ -378,8 +380,19 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-6">
+                                <h6>Member Image</h6>
+                                <div class="mb-3">
+                                    <input class="form-control" type="file" id="formFile">
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                         <button type="submit" class="btn btn-primary">Send</button>
                     </form>
+
                 </div>
             </div>
         </div>

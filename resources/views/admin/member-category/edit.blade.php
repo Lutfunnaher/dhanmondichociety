@@ -16,23 +16,19 @@
                     </div>
                 @endif
 
-                @if (Session)
-                <div>
-                    <li class="alert alert-success" style="list-style: none">{{ $msg }}</li>
-                </div>
 
-                @endif
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="{{ route('category.update'), $category->id }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Member Category Name *</label>
-                            <input type="text" class="form-control" name="category_name" id="exampleFormControlInput1"
+                            <input type="text" class="form-control" name="category_name" value="{{ $category->name }}" id="exampleFormControlInput1"
                                 placeholder="Enter Category Name">
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Member Category Fees *</label>
-                            <input type="number" class="form-control" name="category_amount" id="exampleFormControlInput1"
+                            <input type="number" class="form-control" name="category_amount" value="{{ $category->fees }}" id="exampleFormControlInput1"
                                 placeholder="Enter Amount">
                         </div>
                         <div class="mb-3">

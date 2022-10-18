@@ -75,20 +75,22 @@
         </a>
       </li>
 
-      {{-- add member --}}
-      <li class="menu-item">
-        <a href="{{ route('addmember') }}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-home-circle"></i>
-          <div data-i18n="Analytics">Add Member</div>
-        </a>
-      </li>
       {{-- add member category --}}
       <li class="menu-item">
-        <a href="{{ route('add-mcategory-index') }}" class="menu-link">
+        <a href="{{ route('category.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bx-home-circle"></i>
           <div data-i18n="Analytics">Member Category</div>
         </a>
       </li>
+
+      {{-- add member --}}
+      <li class="menu-item">
+        <a href="{{ route('member.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-home-circle"></i>
+          <div data-i18n="Analytics">Add Member</div>
+        </a>
+      </li>
+
 
       <!-- Layouts -->
       <li class="menu-item">

@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\MemberCategoryController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\MemberController;
 use App\Http\Controllers\HomeController;
 
 
@@ -11,6 +12,20 @@ use App\Http\Controllers\HomeController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+
+
+// test route
+// Route::get('/demo', function(){
+//     $data = ['name'=> 'sitename', 'url'=>'dhanmondisociety'];
+//     return view('admin.test.test', compact('data'));
+// });
+
+
+
+
+
+
 
 // Frontend Routes
 Route::get('/', [FrontendController::class, 'index'])->name('website.index');
@@ -28,10 +43,20 @@ Route::get('/complain', [FrontendController::class, 'complain'])->name('website.
 
 // Backend Routes
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/add_member', [DashboardController::class, 'add_member'])->name('addmember');
-// Members Routes
-Route::get('/add-mcategory', [MemberCategoryController::class, 'index'])->name('add-mcategory-index');
-Route::post('/add-mcategory', [MemberCategoryController::class, 'store'])->name('add-mcategory-store');
+
+// Member Category Routes
+Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/create/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+// Member routes
+Route::resource('/member', MemberController::class);
+
+
+
 
 // test for git command
 // Route::view('/error', 'view.error');
@@ -47,3 +72,36 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 
+
+
+
+/*
+
+ public function index()
+    {
+        $categories = MembershipCategory::all();
+        return view('admin.member-category.index', compact('categories'));
+    }
+
+
+    public function create()
+    {
+        return view('admin.member-category.create');
+    }
+
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'category_name' => 'required',
+            'category_amount' =>  'required'
+        ]);
+
+        MembershipCategory::create([
+            'name' => $request->category_name,
+            'fees' => $request->category_amount,
+        ]);
+
+        return redirect()->route('member-category.index')->with('message', 'Member catgory created.');
+    }
+    */

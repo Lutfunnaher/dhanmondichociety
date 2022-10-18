@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\MembershipCategory;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +15,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
-        // return view('layouts.backend');
+        $categories = MembershipCategory::all();
+        return view('admin.member-category.index', compact('categories'));
     }
-
-    // public function add_member()
-    // {
-    //     return view('admin.dashboard.addmember');
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -47,10 +43,10 @@ class DashboardController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\MembershipCategory  $membershipCategory
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
     }
@@ -58,33 +54,34 @@ class DashboardController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\MembershipCategory  $membershipCategory
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $category = MembershipCategory::findOrFail($id);
+        return view('admin.member-category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\MembershipCategory  $membershipCategory
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $id;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\MembershipCategory  $membershipCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
         //
     }
