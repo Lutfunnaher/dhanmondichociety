@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Dhanmondi Society</title>
+    <meta content="" name="keywords">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Favicons -->
+    <link href="@yield('image')" rel="icon">
+    <link href="img/Logo.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="vendor/aos/aos.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <!-- ======= Top Bar ======= -->
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <marquee style="margin-top:10px; color: #0101CC;"><b> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, voluptates? </b></marquee>
+                </div>
+            </div>
+        </div>
+        <div class="container d-flex align-items-center" style="margin-top:-32px;">
+
+            <a href="/" class="logo me-auto"><img src="img/Logo.png" alt=""></a>
+
+            <nav id="navbar" class="navbar order-last order-lg-0 pt-2 mt-2">
+
+                <ul>
+                    <li><a class="nav-link scrollto " href="#">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#">Mission</a></li>
+                    <li class="dropdown"><a href="#"><span>Members</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Executive Members</a></li>
+                            <li><a href="#">Honorary Members</a></li>
+                            <li><a href="#">Life Members</a></li>
+                            <li><a href="#">General Members</a></li>
+
+                            <li class="d-none"><a href="#">Donor Member</a></li>
+                            <li class="d-none"><a href="#" data-toggle="modal" data-target="#exampleModal">Membership
+                                    Form</a></li>
+                            <li><a href="#">Membership Info</a></li>
+                            <li><a href="#">Member Benefits</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link scrollto" href="#">Gallery</a></li>
+                    <li><a class="nav-link scrollto" href="#">About us</a></li>
+                    <li class="dropdown"><a href="#"><span>News and Events</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">News and Events</a></li>
+                            <li><a href="#">News Release</a></li>
+                            <li><a href="#">Media Broadcast</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="nav-link scrollto" href="#">Contact</a></li>
+                </ul>
+
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            <a href="#" class="complain-btn scrollto"><span class="d-md-inline">Complain</span></a>
+        </div>
+    </header>
+
+    <!-- End Header -->
+    <main id="main">
+
+        <!-- ======= Breadcrumbs Section ======= -->
+        <section class="breadcrumbs">
+          <div class="container">
+    
+            <div class="d-flex justify-content-between align-items-center">
+              <h2>Album & Gallery</h2>
+              <ol>
+                <li><a href="/">Home</a></li>
+                <li>{{ $album->title }}</li>
+              </ol>
+            </div>
+    
+          </div>
+        </section><!-- End Breadcrumbs Section -->
+    
+        <section class="inner-page">
+          <div class="container" data-aos="zoom-in">
+            <div class="row">
+             @foreach($galleries as $gallery)
+              <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                 <a class="gallery-lightbox" href="{{ asset('web/image/gallery') }}/{{ $gallery->image }}">
+                <img
+                  src="{{ asset('web/image/gallery') }}/{{ $gallery->image }}"
+                  class="w-100 shadow-1-strong rounded mb-4"
+                  alt="Boat on Calm Water"
+                />
+                </a>
+              </div>
+              @endforeach
+            </div>
+          </div>
+        </section>
+    
+      </main><!-- End #main -->
+     
+     <section id="contact" class="contact d-none">
+             <div class="container">
+         <div class="section-title">
+              <h2>Gallery</h2>
+              
+              <!-- Gallery -->
+    <div class="row">
+     <!--@foreach($galleries as $gallery)-->
+      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+        <img
+          src="{{ asset('web/image/gallery') }}/{{ $gallery->image }}"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Boat on Calm Water"
+        />
+      </div>
+      <!--@endforeach-->
+    </div>
+     
+    <div class="row d-none">
+      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+        <img
+          src="img/gallery/img_2.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Boat on Calm Water"
+        />
+    
+        <img
+          src="img/gallery/img_2.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Wintry Mountain Landscape"
+        />
+      </div>
+    
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <img
+          src="img/gallery/img_3.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Mountains in the Clouds"
+        />
+    
+        <img
+          src="img/gallery/img_4.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Boat on Calm Water"
+        />
+      </div>
+    
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <img
+          src="img/gallery/img_5.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Waves at Sea"
+        />
+    
+        <img
+          src="img/gallery/img_6.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Yosemite National Park"
+        />
+      </div>
+      
+      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+        <img
+          src="img/gallery/img_7.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Boat on Calm Water"
+        />
+    
+        <img
+          src="img/gallery/img_8.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Wintry Mountain Landscape"
+        />
+      </div>
+    
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <img
+          src="img/gallery/img_9.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Mountains in the Clouds"
+        />
+    
+        <img
+          src="img/gallery/img_10.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Boat on Calm Water"
+        />
+      </div>
+    
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <img
+          src="img/gallery/img_11.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Waves at Sea"
+        />
+    
+        <img
+          src="img/gallery/img_12.jpeg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt="Yosemite National Park"
+        />
+      </div>
+      
+    </div>
+    <!-- Gallery -->
+              
+              
+            </div>
+        </div>
+        
+    </section>
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="footer-info">
+                        <h3>Address:</h3>
+                        <div class="address">
+                            <p class="left_address">
+                                House 11(Ground floor), Road: 04, <br>
+                                Dhanmondi, Dhaka-1205
+                            </p>
+                            <p class="right_address">
+                                <strong>Phone:</strong> 01404004100 | 01404004101<br>
+                                <strong>Email:</strong> <a
+                                    href="mailto:info@dhanmondisociety.org">info@dhanmondisociety.org</a> | <a
+                                    href="mailto:contact@dhanmondisociety.org">contact@dhanmondisociety.org</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-links">
+                    <h3>Follow Us: </h3>
+                    <div class="social-links mt-3 d-none">
+                        <!--<a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>-->
+                        <a href="https://www.facebook.com/DhanmondiSociety1205" class="facebook" target="blank"><i
+                                style="font-size: 38px;" class="bx bxl-facebook"></i></a>
+                        <a href="https://www.youtube.com/channel/UCae-R_KQ3DzqyjuVLh6B6cA" target="blank"
+                            class="youtube bg-white"><i class="bx bxl-youtube text-danger"></i></a>
+                        <!--<a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>-->
+                        <!--<a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>-->
+                    </div>
+
+                    <div class="row">
+
+                        <div style="width: 40%">
+                            <a href="https://www.facebook.com/DhanmondiSociety1205" target="blank"><img
+                                    style="width: 85%;" src="img/facebook.jpeg" alt=""></a>
+                        </div>
+                        <div style="width: 40%">
+                            <a href="https://www.youtube.com/channel/UCae-R_KQ3DzqyjuVLh6B6cA" target="blank"><img
+                                    style="width: 85%;" src="img/youtube.jpeg" alt=""></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Dhanmondi Society</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+
+            Developed by <a href="www.twistermedia.com">Twister Media Technology</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="vendor/aos/aos.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/glightbox/js/glightbox.min.js"></script>
+<script src="vendor/php-email-form/validate.js"></script>
+<script src="vendor/purecounter/purecounter.js"></script>
+<script src="vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Template Main JS File -->
+<script src="js/main.js"></script>
+
+</body>
+
+</html>
