@@ -246,8 +246,11 @@
                                 <div class="mb-3">
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">Membership Category</span>
-                                        <select name="marital_status" id="" class="form-control">
+                                        <select name="membership_category" id="" class="form-control">
                                             <option value="" style="display: none">Select</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -256,48 +259,51 @@
                         <hr>
                         <div class="row">
                             <h6>Children Information</h6>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon11">Membership Category</span>
-                                        <select name="marital_status" id="" class="form-control">
-                                            <option value="" style="display: none">Select</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-4">
+                            <div id="children-group" class="d-flex justify-content-between">
+                                <div id="children" class="row">
+                                    <div class="col-6">
                                         <div class="mb-3">
                                             <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon11">Relation</span>
-                                                <input type="text" class="form-control" placeholder="Relation"
-                                                    name="relation" aria-label="Username"
-                                                    aria-describedby="basic-addon11">
+                                                <span class="input-group-text" id="basic-addon11">Children Name</span>
+                                                <input type="text" name="children[]" class="form-control"
+                                                    placeholder="Children name">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <div class="mb-3">
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon11">Relation</span>
-                                                <input type="text" class="form-control" placeholder="Relation"
-                                                    name="relation" aria-label="Username"
-                                                    aria-describedby="basic-addon11">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <div class="mb-3">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" id="basic-addon11">Gender</span>
+                                                        <select name="gender[]" class="form-control" id="">
+                                                            <option value="" style="display: none">Select</option>
+                                                            <option value="">Son</option>
+                                                            <option value="">Daughter</option>
+                                                            <option value="">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-5 d-flex justify-content-between align-content-center">
+                                                <div class="mb-3">
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" id="basic-addon11">Age</span>
+                                                        <input type="text" class="form-control" placeholder="Age"
+                                                            name="age[]" aria-label="Username"
+                                                            aria-describedby="basic-addon11">
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    <button id="plusButton" class="btn btn-info"
+                                                        style="width: 40px; height: 40px"><i class="fa-solid fa-plus"
+                                                            style="margin: -6px"></i></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
-                                        <button id="trashButton" class="btn btn-danger btn-small"><i
-                                                class="fa-solid fa-trash"></i></button>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="d-flex flex-row-reverse">
-                                <button class="btn btn-info btn-small"><i class="fa-solid fa-plus"></i></button>
-                            </div>
-
                         </div>
                         <hr>
                         <div class="row">
@@ -399,4 +405,23 @@
 
     </div>
     </div>
+@endsection
+
+
+@section('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#plusButton').click(function(e) {
+                e.preventDefault();
+                $('#children').append('<div class="col-6"><div class="mb-3"><div class="input-group"><span class="input-group-text" >Children Name</span><input type="text" name="children[]" class="form-control" placeholder="Children name"></div></div></div><div class="col-6"><div class="row"><div class="col-7"><div class="mb-3"><div class="input-group"><span class="input-group-text" >Gender</span><select name="gender[]" class="form-control"><option value="" style="display: none">Select</option><option value="">Son</option><option value="">Daughter</option><option value="">Other</option></select></div></div></div><div class="col-5 d-flex justify-content-between align-content-center"><div class="mb-3"><div class="input-group"><span class="input-group-text">Age</span><input type="text" class="form-control" placeholder="Age" name="age[]"></div></div><div class=""><button id="trashButton" class="btn btn-danger" style="width: 40px; height: 40px"><i class="fa-solid fa-trash" style="margin: -6px"></i></button></div></div></div></div>');
+            });
+
+            $('#children').on('click', '#trashButton', function(e){
+                e.preventDefault();
+                $(this).parent('#children').remove();
+            });
+        });
+    </script>
 @endsection
