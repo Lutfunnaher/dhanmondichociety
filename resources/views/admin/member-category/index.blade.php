@@ -29,10 +29,10 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->fees }}</td>
-                                <td>
+                                <td class="d-flex justify-content-start">
                                     <a href="{{ route('category.edit', $item->id) }}"><button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen"></i></button></a>
 
-                                    <form action="{{ route('category.destroy', $item->id) }}" method="POST">
+                                    <form action="{{ route('category.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
