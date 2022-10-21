@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.member-category.create');
     }
 
     /**
@@ -37,18 +37,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request, [
+            'category_name' => 'required',
+            'category_amount' => 'required',
+        ]);
+        // return $request->all();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\MembershipCategory  $membershipCategory
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        //
+        // $category = new MembershipCategory();
+        // $category->name = $request->category_name;
+        // $category->fees = $request->category_amount;
+
+        // MembershipCategory::create($request->all());
+
+        MembershipCategory::create([
+            'name' => $request->category_name,
+            'fees' => $request->category_amount
+        ]);
+        return redirect()->route('category.index')->with('message', 'Member category created.');
     }
 
     /**
@@ -57,9 +62,8 @@ class CategoryController extends Controller
      * @param  \App\Models\MembershipCategory  $membershipCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(MembershipCategory $category)
     {
-        $category = MembershipCategory::findOrFail($id);
         return view('admin.member-category.edit', compact('category'));
     }
 
@@ -70,9 +74,18 @@ class CategoryController extends Controller
      * @param  \App\Models\MembershipCategory  $membershipCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, MembershipCategory $category)
     {
-        // return $id;
+        // return $request->input();
+        $this->validate($request, [
+            'category_name' => 'required',
+            'category_amount' => 'required',
+        ]);
+
+        $category->name = $request->category_name;
+        $category->fees = $request->category_amount;
+        $category->save();
+        return redirect()->route('category.index')->with('message', 'Member category updated.');
     }
 
     /**
@@ -81,8 +94,9 @@ class CategoryController extends Controller
      * @param  \App\Models\MembershipCategory  $membershipCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(MembershipCategory $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('category.index')->with('message', 'Member category deleted.');
     }
 }
