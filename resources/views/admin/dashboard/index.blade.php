@@ -1,9 +1,6 @@
 @extends('layouts.backend')
 
 @section('content')
-
-
-
         <div class="row mb-3">
 
             {{-- All Members --}}
