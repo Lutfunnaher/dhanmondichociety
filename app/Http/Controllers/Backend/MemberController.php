@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Member;
+use App\Models\MembershipCategory;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -15,7 +16,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.addmember');
+        $categories = MembershipCategory::all();
+        return view('admin.dashboard.addmember', compact('categories'));
     }
 
     /**
