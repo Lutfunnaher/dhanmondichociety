@@ -23,7 +23,7 @@ use App\Http\Controllers\HomeController;
 
 
 
-
+Route::view('/test', 'test');
 
 
 
@@ -45,12 +45,7 @@ Route::get('/complain', [FrontendController::class, 'complain'])->name('website.
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Member Category Routes
-Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
-Route::get('/category/create/{id}', [CategoryController::class, 'edit'])->name('category.edit');
-Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
-Route::delete('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+Route::resource('/category', CategoryController::class);
 
 // Member routes
 Route::resource('/member', MemberController::class);
@@ -73,35 +68,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 
-
-
-/*
-
- public function index()
-    {
-        $categories = MembershipCategory::all();
-        return view('admin.member-category.index', compact('categories'));
-    }
-
-
-    public function create()
-    {
-        return view('admin.member-category.create');
-    }
-
-
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'category_name' => 'required',
-            'category_amount' =>  'required'
-        ]);
-
-        MembershipCategory::create([
-            'name' => $request->category_name,
-            'fees' => $request->category_amount,
-        ]);
-
-        return redirect()->route('member-category.index')->with('message', 'Member catgory created.');
-    }
-    */
+// </div>
+//     <div class="col-4">
+//         <button id="trashButton" class="btn btn-danger btn-small"><i
+//                 class="fa-solid fa-trash"></i></button>
+//     </div>
