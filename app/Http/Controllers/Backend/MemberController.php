@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Member;
 use App\Models\MembershipCategory;
+use App\Models\Children;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -38,7 +39,56 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'member_name' => '',
+            'membership_id' => '',
+            'category_of_membership' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+            'member_name' => '',
+        ]);
+
         dd($request->input());
+
+        /**
+         * Member Children insertion
+         *
+         */
+        // $name = $request->name;
+        // $gender = $request->gender;
+        // $age = $request->age;
+
+        // $array = [$name, $gender, $age];
+        // $count = count($name);
+        // dd($count); 4
+        // $array 3
+
+        // for($i=0; $i<=$count-1; $i++) {
+        //     $child_info = array_column($array, $i);
+        //     // print_r($child_info);
+
+        //     Children::create([
+        //         'member_id' => 1,
+        //         'name' => $child_info[0],
+        //         'gender' => $child_info[1],
+        //         'age' => $child_info[2],
+        //     ]);
+        // }
+
+
+        return redirect()->route('member.index');
+
     }
 
     /**

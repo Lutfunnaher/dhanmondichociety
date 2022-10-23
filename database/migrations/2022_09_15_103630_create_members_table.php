@@ -41,17 +41,6 @@ class CreateMembersTable extends Migration
             $table->string('cp_mobile')->nullable();
             $table->timestamps();
         });
-
-        // children table schema
-        Schema::create('children', function (Blueprint $table) {
-            // children
-            $table->id();
-            $table->string('member_id');
-            $table->string('child_name');
-            $table->string('gender');
-            $table->integer('age');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -62,6 +51,5 @@ class CreateMembersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('members');
-        Schema::dropIfExists('children');
     }
 }
