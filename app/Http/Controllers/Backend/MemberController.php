@@ -135,4 +135,10 @@ class MemberController extends Controller
     {
         //
     }
+
+
+    public function introduce($id)
+    {
+        //$data =
+    }
 }

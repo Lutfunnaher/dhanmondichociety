@@ -288,7 +288,7 @@
                                         <select id="mCategory" name="category_of_membership" id="" class="form-control">
                                             <option value="" style="display: none">Select</option>
                                             @forelse ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->name }}">{{ $category->name }}</option>
                                             @empty
                                                 <option value="" class="test-warning" disabled>Please add member category first!</option>
                                             @endforelse
@@ -306,19 +306,38 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon11">Payment Type</span>
-                                        <select name="payment_type" id="" class="form-control">
-                                            <option value="" style="display: none">Select</option>
-                                            <option value="cash">Cash</option>
+                                        <span class="input-group-text">Payment Type</span>
+                                        <select name="payment_type" id="paymentType" class="form-control">
+                                            <option value="cash" selected>Cash</option>
                                             <option value="cheque">Cheque</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <div class="input-group">
+                                    <div id="cashPayment" class="input-group">
                                         <span class="input-group-text" id="basic-addon11">Payment Date</span>
                                         <input class="form-control" type="date" name="payment_date"
-                                            placeholder="Payment Date" value="" id="html5-date-input">
+                                            placeholder="Payment Date" value="">
+                                    </div>
+                                    <div id="chequePayment">
+                                        <div class="mt-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon11">Bank Name</span>
+                                                <input class="form-control" type="text" name="bank_name" placeholder="Bank Name" value="">
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Cheque Number</span>
+                                                <input class="form-control" type="text" name="cheque_number" placeholder="Cheque Number" value="">
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Date</span>
+                                                <input class="form-control" type="date" name="cheque_date" placeholder="Date" value="">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +349,7 @@
                                 <div class="mb-3">
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">Introduce Membership ID*</span>
-                                        <input type="text" class="form-control" placeholder="Member ID"
+                                        <input id="introduceId" type="text" class="form-control" placeholder="Member ID"
                                             name="intro_memeber_id" aria-label="Username"
                                             aria-describedby="basic-addon11">
                                     </div>
@@ -390,16 +409,72 @@
 
     <script>
         $(document).ready(function() {
+            // dynamic input box
+            // add new field
             $('#newBtn').click(function(e) {
                 e.preventDefault();
                 $('.form-group').append(
                     '<div class="d-flex align-content-between mt-2"><input type="text" name="name[]" class="form-control" placeholder="Enter name"><select name="gender[]" id="" class="form-control"><option value="" style="display:none">Select</option><option value="1">Son</option><option value="2">Daughter</option><option value="3">Other</option></select><input type="text" name="age[]" class="form-control" placeholder="Enter age"><button id="removeBtn" class="btn btn-danger"><i class="fas fa-trash"></i></button></div>'
                     );
             });
-
+            // remove field
             $('.form-group').on('click', '#removeBtn', function(e) {
                 e.preventDefault();
                 $(this).parent('div').remove();
+            });
+            // dynamic input box end
+
+
+            // payment type select box
+            let paymentType = $('#paymentType').val();
+            if(paymentType == 'cash') {
+                $('#chequePayment').hide();
+            }
+
+            $('#paymentType').on('change', function(){
+                let paymentType = $('#paymentType').val();
+                if (paymentType == 'cheque') {
+                    $('#chequePayment').show();
+                    $('#cashPayment').hide();
+                } else {
+                    $('#chequePayment').hide();
+                    $('#cashPayment').show();
+                }
+            });
+
+            // category of membership
+            let category = $('#mCategory').val();
+
+            $('#mCategory').on('change', function(){
+                let category = $('#mCategory').val();
+                if(category == 'General') {
+                    $('#categoryAmount').val('5000');
+                } else if(category == 'Life') {
+                    $('#categoryAmount').val('500000');
+                } else if(category == 'Donor') {
+                    $('#categoryAmount').val('500000');
+                } else if(category == 'Honorable') {
+                    $('#categoryAmount').val('0');
+                } else if(category == 'Corporate') {
+                    $('#categoryAmount').val('2500000');
+                }
+            });
+
+            // introduce member call
+            $('#introduceId').on('change', function(e){
+                e.preventDefault();
+                let id = $('#introduceId').val();
+
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { memberId: id },
+                    url: '/introduce/'+id,
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+                console.log(introduceBy);
             });
         });
     </script>
