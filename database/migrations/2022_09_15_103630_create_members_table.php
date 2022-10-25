@@ -23,7 +23,7 @@ class CreateMembersTable extends Migration
             $table->string('member_id');
             $table->string('road');
             $table->text('address');
-            $table->integer('nid');
+            $table->string('nid');
             $table->string('nationality')->default('bangladeshi');
             $table->string('occupation');
             $table->string('bgroup');
