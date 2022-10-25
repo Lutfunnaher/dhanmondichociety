@@ -40,26 +40,24 @@ class MemberController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'member_name' => '',
-            'membership_id' => '',
-            'category_of_membership' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-            'member_name' => '',
-        ]);
 
-        dd($request->input());
+
+        return $request->all();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /**
          * Member Children insertion
@@ -137,8 +135,13 @@ class MemberController extends Controller
     }
 
 
-    public function introduce($id)
+    public function introduce($member_id)
     {
-        //$data =
+        // return $id;
+        $data = Member::where('member_id', $member_id)->first();
+        // return $data;
+
+
+        return response()->json($data);
     }
 }

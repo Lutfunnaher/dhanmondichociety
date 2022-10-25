@@ -8,7 +8,7 @@ use App\Http\Controllers\Backend\MemberController;
 use App\Http\Controllers\HomeController;
 
 
-Route::view('/test', 'test');
+// Route::view('/test', 'test');
 
 
 // Frontend Routes
@@ -29,7 +29,8 @@ Route::resource('/category', CategoryController::class);
 
 // Member routes
 Route::resource('/member', MemberController::class);
-Route::get('/introduce/{id}', [MemberController::class, 'introduce']);
+Route::get('/introduce/{member_id}', [MemberController::class, 'introduce']);
+
 
 
 
