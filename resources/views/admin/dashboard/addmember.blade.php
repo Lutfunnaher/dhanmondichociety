@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ route('member.store') }}" method="POST">
+                    <form action="{{ route('member.store') }}" method="POST" enctype='multipart/form-data'>
                         @csrf
                         <div class="row">
                             <h6>Personal Information</h6>
@@ -357,7 +357,7 @@
                                 <div class="mb-3">
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">Introduce Member Name</span>
-                                        <input type="text" class="form-control" placeholder="Member Name"
+                                        <input type="text" class="form-control" id="introMName" placeholder="Member Name"
                                             name="intro_member_name" aria-label="Username"
                                             aria-describedby="basic-addon11" disabled>
                                     </div>
@@ -368,7 +368,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">Introduce Member Joining
                                             Date</span>
-                                        <input type="text" class="form-control" placeholder="Joining Date"
+                                        <input type="text" class="form-control" placeholder="Joining Date" id="introMDate"
                                             name="intro_member_joining_date" aria-label="Username"
                                             aria-describedby="basic-addon11" disabled>
                                     </div>
@@ -463,18 +463,20 @@
             // introduce member call
             $('#introduceId').on('change', function(e){
                 e.preventDefault();
-                let id = $('#introduceId').val();
+                let member_id = $('#introduceId').val(); // GM202208310134
+                // console.log(member_id);
 
                 $.ajax({
-                    type: 'POST',
+                    type: 'GET',
                     dataType: 'json',
-                    data: { memberId: id },
-                    url: '/introduce/'+id,
+                    data: { member_id: member_id },
+                    url: '/introduce/'+member_id,
                     success: function(data) {
-                        console.log(data);
+                        $('#introMName').val(data.name);
+                        $('#introMDate').val(data.created_at); // $.datepicker.formatDate('dd M yy', new Date())
                     }
                 });
-                console.log(introduceBy);
+
             });
         });
     </script>
