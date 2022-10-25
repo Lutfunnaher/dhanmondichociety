@@ -29,6 +29,7 @@ Route::resource('/category', CategoryController::class);
 
 // Member routes
 Route::resource('/member', MemberController::class);
+Route::get('/introduce/{id}', [MemberController::class, 'introduce']);
 
 
 
