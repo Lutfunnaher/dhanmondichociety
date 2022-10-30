@@ -14,7 +14,7 @@ class AddImageToMembersTable extends Migration
     public function up()
     {
         Schema::table('members', function (Blueprint $table) {
-            $table->string('image')->after('whichever_column')->nullable();
+            $table->string('image')->after('cp_mobile')->nullable();
         });
     }
 
