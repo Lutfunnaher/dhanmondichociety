@@ -42,10 +42,63 @@ class MemberController extends Controller
 
 
 
-        return $request->all();
+        // return $request->all();
+        Member::create([
+            'name'              => $request->member_name,
+            'fname'             => $request->father_name,
+            'mname'             => $request->mother_name,
+            'sname'             => $request->spouse_name,
+            'member_id'         => $request->membership_id,
+            'road'              => $request->road_no,
+            'address'           => $request->address,
+            'nid'               => $request->national_id,
+            'nationality'       => $request->nationality,
+            'occupation'        => $request->occupation,
+            'bgroup'            => $request->bloodgroup,
+            'marital_status'    => $request->marital_status,
+            'dob'               => $request->dob,
+            'dom'               => $request->dom,
+            'telephone_res'     => $request->telephone_res,
+            'mobile'            => $request->mobile,
+            'workplace'         => $request->work_place,
+            'email'             => $request->email,
+            'contact_person'    => $request->contact_person,
+            'cp_relation'       => $request->relation,
+            'cp_telephone'      => $request->cp_telephone,
+            'cp_mobile'         => $request->cp_mobile,
+
+            //
+            'category_of_membership' => $request->category_of_membership,
+            'payment_type'           => $request->payment_type,
+            'payment_date'           => $request->payment_date,
+            'bank_name'              => $request->bank_name,
+            'cheque_number'          => $request->cheque_number,
+            'cheque_date'            => $request->cheque_date,
+            'intro_member_id'        => $request->intro_member_id,
+            'how_long_know'          => $request->how_long_know,
+        ]);
 
 
+        $name = $request->name;
+        $gender = $request->gender;
+        $age = $request->age;
 
+        $array = [$name, $gender, $age];
+        $count = count($name);
+        // dd($count); 4
+        // $array 3
+
+        for($i=0; $i<=$count-1; $i++) {
+            $child_info = array_column($array, $i);
+            // print_r($child_info);
+
+            Children::create([
+                'member_id' => $request->membership_id,
+                'name' => $child_info[0],
+                'gender' => $child_info[1],
+                'age' => $child_info[2],
+            ]);
+        }
 
 
 
@@ -86,7 +139,6 @@ class MemberController extends Controller
 
 
         return redirect()->route('member.index');
-
     }
 
     /**
