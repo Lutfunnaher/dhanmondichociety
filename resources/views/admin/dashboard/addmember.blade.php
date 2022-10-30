@@ -316,26 +316,26 @@
                                 <div class="mb-3">
                                     <div id="cashPayment" class="input-group">
                                         <span class="input-group-text" id="basic-addon11">Payment Date</span>
-                                        <input class="form-control" type="date" name="payment_date"
+                                        <input class="form-control" id="pDate" type="date" name="payment_date"
                                             placeholder="Payment Date" value="">
                                     </div>
                                     <div id="chequePayment">
                                         <div class="mt-3">
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon11">Bank Name</span>
-                                                <input class="form-control" type="text" name="bank_name" placeholder="Bank Name" value="">
+                                                <input class="form-control" id="bName" type="text" name="bank_name" placeholder="Bank Name" value="">
                                             </div>
                                         </div>
                                         <div class="mt-3">
                                             <div class="input-group">
                                                 <span class="input-group-text">Cheque Number</span>
-                                                <input class="form-control" type="text" name="cheque_number" placeholder="Cheque Number" value="">
+                                                <input class="form-control" type="text" id="cNum" name="cheque_number" placeholder="Cheque Number" value="">
                                             </div>
                                         </div>
                                         <div class="mt-3">
                                             <div class="input-group">
                                                 <span class="input-group-text">Date</span>
-                                                <input class="form-control" type="date" name="cheque_date" placeholder="Date" value="">
+                                                <input class="form-control" type="date" id="cDate" name="cheque_date" placeholder="Date" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -350,7 +350,7 @@
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon11">Introduce Membership ID*</span>
                                         <input id="introduceId" type="text" class="form-control" placeholder="Member ID"
-                                            name="intro_memeber_id" aria-label="Username"
+                                            name="intro_member_id" aria-label="Username"
                                             aria-describedby="basic-addon11">
                                     </div>
                                 </div>
@@ -436,9 +436,17 @@
                 if (paymentType == 'cheque') {
                     $('#chequePayment').show();
                     $('#cashPayment').hide();
+                    $('#pDate').val('');  // bNamecNumcDate
+                    $('#bName').val('');  // cNumcDate
+                    $('#cNum').val('');  //
+                    $('#cDate').val('');  //
                 } else {
                     $('#chequePayment').hide();
                     $('#cashPayment').show();
+                    $('#pDate').val('');  // bNamecNumcDate
+                    $('#bName').val('');  // cNumcDate
+                    $('#cNum').val('');  //
+                    $('#cDate').val('');  //
                 }
             });
 
