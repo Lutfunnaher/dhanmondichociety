@@ -21,24 +21,35 @@ class CreateMembersTable extends Migration
             $table->string('mname');
             $table->string('sname')->nullable();
             $table->string('member_id');
-            $table->string('road');
-            $table->text('address');
-            $table->string('nid');
-            $table->string('nationality')->default('bangladeshi');
-            $table->string('occupation');
-            $table->string('bgroup');
-            $table->string('marital_status');
-            $table->string('dob');
-            $table->string('dom');
-            $table->string('telephone_res');
+            $table->string('road')->nullable();
+            $table->text('address')->nullable();
+            $table->string('nid')->nullable();
+            $table->string('nationality')->default('Bangladeshi');
+            $table->string('occupation')->nullable();
+            $table->string('bgroup')->nullable();
+            $table->string('marital_status')->nullable();
+            $table->string('dob')->nullable();
+            $table->string('dom')->nullable();
+            $table->string('telephone_res')->nullable();
             $table->string('mobile')->unique();
-            $table->string('workplace');
+            $table->string('workplace')->nullable();
             $table->string('email')->unique();
             // contact person
             $table->string('contact_person')->nullable();
             $table->string('cp_relation')->nullable();
             $table->string('cp_telephone')->nullable();
             $table->string('cp_mobile')->nullable();
+            // member category
+            $table->string('category_of_membership')->nullable();
+            // payment info
+            $table->string('payment_type')->nullable();
+            $table->string('payment_date')->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('cheque_number')->nullable();
+            $table->string('cheque_date')->nullable();
+            // introduce
+            $table->string('intro_member_id')->nullable();
+            $table->string('how_long_know')->nullable();
             $table->timestamps();
         });
     }
