@@ -32,6 +32,7 @@ class CreateMembersTable extends Migration
             $table->string('dom')->nullable();
             $table->string('telephone_res')->nullable();
             $table->string('mobile')->unique();
+            $table->string('membership_type')->default('non-executive');
             $table->string('workplace')->nullable();
             $table->string('email')->unique();
             // contact person
