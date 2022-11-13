@@ -40,43 +40,120 @@ class MemberController extends Controller
     public function store(Request $request)
     {
 
+        // $membership_id = 'GM'.$request->membership_id;
 
+        if ($request->membership_type == ''){
+
+            Member::create([
+                'name'              => $request->member_name,
+                'fname'             => $request->father_name,
+                'mname'             => $request->mother_name,
+                'sname'             => $request->spouse_name,
+                'member_id'         => 'GM'.$request->membership_id,
+                'road'              => $request->road_no,
+                'address'           => $request->address,
+                'nid'               => $request->national_id,
+                'nationality'       => $request->nationality,
+                'occupation'        => $request->occupation,
+                'bgroup'            => $request->bloodgroup,
+                'marital_status'    => $request->marital_status,
+                'dob'               => $request->dob,
+                'dom'               => $request->dom,
+                'telephone_res'     => $request->telephone_res,
+                'mobile'            => $request->mobile,
+                'membership_type'   => 'non-executive',
+                'workplace'         => $request->work_place,
+                'email'             => $request->email,
+                'contact_person'    => $request->contact_person,
+                'cp_relation'       => $request->relation,
+                'cp_telephone'      => $request->cp_telephone,
+                'cp_mobile'         => $request->cp_mobile,
+
+                //
+                'category_of_membership' => $request->category_of_membership,
+                'payment_type'           => $request->payment_type,
+                'payment_date'           => $request->payment_date,
+                'bank_name'              => $request->bank_name,
+                'cheque_number'          => $request->cheque_number,
+                'cheque_date'            => $request->cheque_date,
+                'intro_member_id'        => $request->intro_member_id,
+                'how_long_know'          => $request->how_long_know,
+            ]);
+        } else {
+            Member::create([
+                'name'              => $request->member_name,
+                'fname'             => $request->father_name,
+                'mname'             => $request->mother_name,
+                'sname'             => $request->spouse_name,
+                'member_id'         => 'GM'.$request->membership_id,
+                'road'              => $request->road_no,
+                'address'           => $request->address,
+                'nid'               => $request->national_id,
+                'nationality'       => $request->nationality,
+                'occupation'        => $request->occupation,
+                'bgroup'            => $request->bloodgroup,
+                'marital_status'    => $request->marital_status,
+                'dob'               => $request->dob,
+                'dom'               => $request->dom,
+                'telephone_res'     => $request->telephone_res,
+                'mobile'            => $request->mobile,
+                'membership_type'   => $request->membership_type,
+                'workplace'         => $request->work_place,
+                'email'             => $request->email,
+                'contact_person'    => $request->contact_person,
+                'cp_relation'       => $request->relation,
+                'cp_telephone'      => $request->cp_telephone,
+                'cp_mobile'         => $request->cp_mobile,
+
+                //
+                'category_of_membership' => $request->category_of_membership,
+                'payment_type'           => $request->payment_type,
+                'payment_date'           => $request->payment_date,
+                'bank_name'              => $request->bank_name,
+                'cheque_number'          => $request->cheque_number,
+                'cheque_date'            => $request->cheque_date,
+                'intro_member_id'        => $request->intro_member_id,
+                'how_long_know'          => $request->how_long_know,
+            ]);
+        }
+        // return $membership_type;
 
         // return $request->all();
-        Member::create([
-            'name'              => $request->member_name,
-            'fname'             => $request->father_name,
-            'mname'             => $request->mother_name,
-            'sname'             => $request->spouse_name,
-            'member_id'         => $request->membership_id,
-            'road'              => $request->road_no,
-            'address'           => $request->address,
-            'nid'               => $request->national_id,
-            'nationality'       => $request->nationality,
-            'occupation'        => $request->occupation,
-            'bgroup'            => $request->bloodgroup,
-            'marital_status'    => $request->marital_status,
-            'dob'               => $request->dob,
-            'dom'               => $request->dom,
-            'telephone_res'     => $request->telephone_res,
-            'mobile'            => $request->mobile,
-            'workplace'         => $request->work_place,
-            'email'             => $request->email,
-            'contact_person'    => $request->contact_person,
-            'cp_relation'       => $request->relation,
-            'cp_telephone'      => $request->cp_telephone,
-            'cp_mobile'         => $request->cp_mobile,
+        // Member::create([
+        //     'name'              => $request->member_name,
+        //     'fname'             => $request->father_name,
+        //     'mname'             => $request->mother_name,
+        //     'sname'             => $request->spouse_name,
+        //     'member_id'         => 'GM'.$request->membership_id,
+        //     'road'              => $request->road_no,
+        //     'address'           => $request->address,
+        //     'nid'               => $request->national_id,
+        //     'nationality'       => $request->nationality,
+        //     'occupation'        => $request->occupation,
+        //     'bgroup'            => $request->bloodgroup,
+        //     'marital_status'    => $request->marital_status,
+        //     'dob'               => $request->dob,
+        //     'dom'               => $request->dom,
+        //     'telephone_res'     => $request->telephone_res,
+        //     'mobile'            => $request->mobile,
+        //     'membership_type'   => $request->membership_type,
+        //     'workplace'         => $request->work_place,
+        //     'email'             => $request->email,
+        //     'contact_person'    => $request->contact_person,
+        //     'cp_relation'       => $request->relation,
+        //     'cp_telephone'      => $request->cp_telephone,
+        //     'cp_mobile'         => $request->cp_mobile,
 
             //
-            'category_of_membership' => $request->category_of_membership,
-            'payment_type'           => $request->payment_type,
-            'payment_date'           => $request->payment_date,
-            'bank_name'              => $request->bank_name,
-            'cheque_number'          => $request->cheque_number,
-            'cheque_date'            => $request->cheque_date,
-            'intro_member_id'        => $request->intro_member_id,
-            'how_long_know'          => $request->how_long_know,
-        ]);
+        //     'category_of_membership' => $request->category_of_membership,
+        //     'payment_type'           => $request->payment_type,
+        //     'payment_date'           => $request->payment_date,
+        //     'bank_name'              => $request->bank_name,
+        //     'cheque_number'          => $request->cheque_number,
+        //     'cheque_date'            => $request->cheque_date,
+        //     'intro_member_id'        => $request->intro_member_id,
+        //     'how_long_know'          => $request->how_long_know,
+        // ]);
 
 
         $name = $request->name;
