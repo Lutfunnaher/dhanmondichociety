@@ -241,22 +241,22 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <h6>Membership Category</h6>
+                            <h6>Membership Type</h6>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon11">Membership Category</span>
-                                        <select name="membership_category" id="" class="form-control">
+                                        {{-- <span class="input-group-text" id="basic-addon11">Membership Type</span> --}}
+                                        <input type="checkbox" name="membership_type" value="executive"> Executive (Check the tick mark for executive member)
+
+                                        {{-- <select name="membership_category" id="" class="form-control">
                                             <option value="" style="display: none">Select</option>
-                                            {{-- @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @foreach --}}
+
                                             @forelse ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @empty
                                                 <option value="" class="test-warning" disabled>Please add member category first!</option>
                                             @endforelse
-                                        </select>
+                                        </select> --}}
                                     </div>
                                 </div>
                             </div>
