@@ -16,41 +16,41 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             // member
             $table->id();
+            $table->string('membership_number');
+            $table->string('current_membership_number');
+            // introduce
+            $table->string('introduce_member_id')->nullable();
+            $table->string('member_type')->default('non-executive');
+            $table->string('membership_category_id');
             $table->string('name');
-            $table->string('fname');
-            $table->string('mname');
-            $table->string('sname')->nullable();
-            $table->string('member_id');
-            $table->string('road')->nullable();
+            $table->string('position')->nullable();
+            $table->string('father_name');
+            $table->string('mother_name')->nullable();
+            $table->string('spouse_ame')->nullable();
+            $table->string('road_no')->nullable();
             $table->text('address')->nullable();
-            $table->string('nid')->nullable();
-            $table->string('nationality')->default('Bangladeshi');
+            $table->string('nid_no');
+            $table->string('nationality')->nullable();
             $table->string('occupation')->nullable();
-            $table->string('bgroup')->nullable();
+            $table->string('blood_group')->nullable();
             $table->string('marital_status')->nullable();
-            $table->string('dob')->nullable();
-            $table->string('dom')->nullable();
+            $table->string('date_of_birth');
+            $table->string('date_of_marriage')->nullable();
             $table->string('telephone_res')->nullable();
-            $table->string('mobile')->unique();
-            $table->string('membership_type')->default('non-executive');
             $table->string('workplace')->nullable();
+            $table->string('mobile')->unique();
             $table->string('email')->unique();
             // contact person
-            $table->string('contact_person')->nullable();
-            $table->string('cp_relation')->nullable();
-            $table->string('cp_telephone')->nullable();
-            $table->string('cp_mobile')->nullable();
-            // member category
-            $table->string('category_of_membership')->nullable();
-            // payment info
-            $table->string('payment_type')->nullable();
-            $table->string('payment_date')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('cheque_number')->nullable();
-            $table->string('cheque_date')->nullable();
-            // introduce
-            $table->string('intro_member_id')->nullable();
-            $table->string('how_long_know')->nullable();
+            $table->string('contact_person_name')->nullable();
+            $table->string('relation')->nullable();
+            $table->string('contact_person_telephone')->nullable();
+            $table->string('contact_person_mobile')->nullable();
+            $table->string('how_long_known')->nullable();
+            // image
+            $table->string('image')->nullable();
+            $table->string('status')->default(1);
+            $table->string('order_by')->nullable();
+            $table->string('entry_by')->nullable();
             $table->timestamps();
         });
     }
