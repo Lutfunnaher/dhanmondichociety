@@ -17,8 +17,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $categories = MembershipCategory::all();
-        return view('admin.dashboard.addmember', compact('categories'));
+
     }
 
     /**
@@ -28,7 +27,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        $categories = MembershipCategory::all();
+        return view('admin.members.create', compact('categories'));
     }
 
     /**
@@ -40,142 +40,66 @@ class MemberController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->input());
         // $membership_id = 'GM'.$request->membership_id;
 
         if ($request->membership_type == ''){
 
             Member::create([
-                'name'              => $request->member_name,
-                'fname'             => $request->father_name,
-                'mname'             => $request->mother_name,
-                'sname'             => $request->spouse_name,
-                'member_id'         => 'GM'.$request->membership_id,
-                'road'              => $request->road_no,
-                'address'           => $request->address,
-                'nid'               => $request->national_id,
-                'nationality'       => $request->nationality,
-                'occupation'        => $request->occupation,
-                'bgroup'            => $request->bloodgroup,
-                'marital_status'    => $request->marital_status,
-                'dob'               => $request->dob,
-                'dom'               => $request->dom,
-                'telephone_res'     => $request->telephone_res,
-                'mobile'            => $request->mobile,
-                'membership_type'   => 'non-executive',
-                'workplace'         => $request->work_place,
-                'email'             => $request->email,
-                'contact_person'    => $request->contact_person,
-                'cp_relation'       => $request->relation,
-                'cp_telephone'      => $request->cp_telephone,
-                'cp_mobile'         => $request->cp_mobile,
-
-                //
-                'category_of_membership' => $request->category_of_membership,
-                'payment_type'           => $request->payment_type,
-                'payment_date'           => $request->payment_date,
-                'bank_name'              => $request->bank_name,
-                'cheque_number'          => $request->cheque_number,
-                'cheque_date'            => $request->cheque_date,
-                'intro_member_id'        => $request->intro_member_id,
-                'how_long_know'          => $request->how_long_know,
+                'name' => $request->name,
+                'father_name' => $request->father_name,
+                'mother_name' => $request->mother_name,
+                'spouse_ame' => $request->spouse_ame,
+                'membership_number' => 'GM' . $request->membership_number,
+                'current_membership_number' => 'GM' . $request->membership_number,
+                'road_no' => $request->road_no,
+                'address' => $request->address,
+                'nid_no' => $request->nid_no,
+                'nationality' => $request->nationality,
+                'occupation' => $request->occupation,
+                'blood_group' => $request->blood_group,
+                'marital_status' => $request->marital_status,
+                'date_of_birth' => $request->date_of_birth,
+                'date_of_marriage' => $request->date_of_marriage,
+                'telephone_res' => $request->telephone_res,
+                'mobile' => $request->mobile,
+                'workplace' => $request->workplace,
+                'email' => $request->email,
+                'contact_person_name' => $request->contact_person_name,
+                'relation' => $request->relation,
+                'contact_person_telephone' => $request->contact_person_telephone,
+                'contact_person_mobile' => $request->contact_person_mobile,
+                'membership_category_id' => $request->category_of_membership,
+                'introduce_member_id' => $request->introduce_member_id,
+                'how_long_known' => $request->how_long_known,
             ]);
-        } else {
-            Member::create([
-                'name'              => $request->member_name,
-                'fname'             => $request->father_name,
-                'mname'             => $request->mother_name,
-                'sname'             => $request->spouse_name,
-                'member_id'         => 'GM'.$request->membership_id,
-                'road'              => $request->road_no,
-                'address'           => $request->address,
-                'nid'               => $request->national_id,
-                'nationality'       => $request->nationality,
-                'occupation'        => $request->occupation,
-                'bgroup'            => $request->bloodgroup,
-                'marital_status'    => $request->marital_status,
-                'dob'               => $request->dob,
-                'dom'               => $request->dom,
-                'telephone_res'     => $request->telephone_res,
-                'mobile'            => $request->mobile,
-                'membership_type'   => $request->membership_type,
-                'workplace'         => $request->work_place,
-                'email'             => $request->email,
-                'contact_person'    => $request->contact_person,
-                'cp_relation'       => $request->relation,
-                'cp_telephone'      => $request->cp_telephone,
-                'cp_mobile'         => $request->cp_mobile,
 
-                //
-                'category_of_membership' => $request->category_of_membership,
-                'payment_type'           => $request->payment_type,
-                'payment_date'           => $request->payment_date,
-                'bank_name'              => $request->bank_name,
-                'cheque_number'          => $request->cheque_number,
-                'cheque_date'            => $request->cheque_date,
-                'intro_member_id'        => $request->intro_member_id,
-                'how_long_know'          => $request->how_long_know,
-            ]);
+
         }
-        // return $membership_type;
-
-        // return $request->all();
-        // Member::create([
-        //     'name'              => $request->member_name,
-        //     'fname'             => $request->father_name,
-        //     'mname'             => $request->mother_name,
-        //     'sname'             => $request->spouse_name,
-        //     'member_id'         => 'GM'.$request->membership_id,
-        //     'road'              => $request->road_no,
-        //     'address'           => $request->address,
-        //     'nid'               => $request->national_id,
-        //     'nationality'       => $request->nationality,
-        //     'occupation'        => $request->occupation,
-        //     'bgroup'            => $request->bloodgroup,
-        //     'marital_status'    => $request->marital_status,
-        //     'dob'               => $request->dob,
-        //     'dom'               => $request->dom,
-        //     'telephone_res'     => $request->telephone_res,
-        //     'mobile'            => $request->mobile,
-        //     'membership_type'   => $request->membership_type,
-        //     'workplace'         => $request->work_place,
-        //     'email'             => $request->email,
-        //     'contact_person'    => $request->contact_person,
-        //     'cp_relation'       => $request->relation,
-        //     'cp_telephone'      => $request->cp_telephone,
-        //     'cp_mobile'         => $request->cp_mobile,
-
-            //
-        //     'category_of_membership' => $request->category_of_membership,
-        //     'payment_type'           => $request->payment_type,
-        //     'payment_date'           => $request->payment_date,
-        //     'bank_name'              => $request->bank_name,
-        //     'cheque_number'          => $request->cheque_number,
-        //     'cheque_date'            => $request->cheque_date,
-        //     'intro_member_id'        => $request->intro_member_id,
-        //     'how_long_know'          => $request->how_long_know,
-        // ]);
 
 
-        $name = $request->name;
-        $gender = $request->gender;
-        $age = $request->age;
 
-        $array = [$name, $gender, $age];
-        $count = count($name);
+
+        // $children_name = $request->children_name;
+        // $gender = $request->gender;
+        // $age = $request->age;
+
+        // $array = [$children_name, $gender, $age];
+        // $count = count($children_name);
         // dd($count); 4
         // $array 3
 
-        for($i=0; $i<=$count-1; $i++) {
-            $child_info = array_column($array, $i);
-            // print_r($child_info);
+        // for($i=0; $i<=$count-1; $i++) {
+        //     $child_info = array_column($array, $i);
+        //     print_r($child_info);
 
-            Children::create([
-                'member_id' => $request->membership_id,
-                'name' => $child_info[0],
-                'gender' => $child_info[1],
-                'age' => $child_info[2],
-            ]);
-        }
+        //     Children::create([
+        //         'member_id' => $request->membership_id,
+        //         'name' => $child_info[0],
+        //         'gender' => $child_info[1],
+        //         'age' => $child_info[2],
+        //     ]);
+        // }
 
 
 
@@ -215,7 +139,7 @@ class MemberController extends Controller
         // }
 
 
-        return redirect()->route('member.index');
+        return redirect()->back();
     }
 
     /**
