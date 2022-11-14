@@ -99,4 +99,12 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('category.index')->with('message', 'Member category deleted.');
     }
+
+    public function getCategory($id)
+    {
+        // dd($id);
+        $data = MembershipCategory::find($id);
+        // return $data;
+        return response()->json($data);
+    }
 }
