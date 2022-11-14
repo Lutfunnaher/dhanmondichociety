@@ -26,6 +26,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // Member Category Routes
 Route::resource('/category', CategoryController::class);
+Route::get('/catgory_id/{id}', [CategoryController::class, 'getCategory']);
 
 // Member routes
 Route::resource('/member', MemberController::class);
