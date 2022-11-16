@@ -243,7 +243,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <input type="checkbox" name="membership_type" value="executive"> &bsp;Executive (Check the tick mark for executive member)
+                                        <input type="checkbox" name="membership_type" value="executive">&nbsp;Executive (Check the tick mark for executive member)
                                     </div>
                                 </div>
                             </div>
@@ -434,46 +434,33 @@
                 }
             });
 
-            // category of membership
-            // let category = $('#mCategory').val();
 
+            // get membership category and set amount to input box
             $('#mCategory').on('change', function(){
                 let cId = $('#mCategory').val();
-                // console.log(categoryId);
                 $.ajax({
                     type: 'GET',
                     dataType: 'json',
                     data: {id: cId},
-                    url: '/category_id/'+cId,
-                    success: function(data) {
-                        console.log(data);
+                    url: `/ajax/${cId}`,
+                    success: function(d) {
+                        $('#categoryAmount').val(d.fees);
                     }
                 });
-                // if(category == 'General') {
-                //     $('#categoryAmount').val('5000');
-                // } else if(category == 'Life') {
-                //     $('#categoryAmount').val('500000');
-                // } else if(category == 'Donor') {
-                //     $('#categoryAmount').val('500000');
-                // } else if(category == 'Honorable') {
-                //     $('#categoryAmount').val('0');
-                // } else if(category == 'Corporate') {
-                //     $('#categoryAmount').val('2500000');
-                // }
             });
 
             // introduce member call
             $('#introduceId').on('change', function(e){
                 e.preventDefault();
                 let member_id = $('#introduceId').val(); // GM202208310134
-                // console.log(member_id);
-
+                console.log(member_id);
                 $.ajax({
                     type: 'GET',
                     dataType: 'json',
                     data: { member_id: member_id },
-                    url: '/introduce/'+member_id,
+                    url: `/refer/${member_id}`,
                     success: function(data) {
+                        console.log(data);
                         $('#introMName').val(data.name);
                         $('#introMDate').val(data.created_at); // $.datepicker.formatDate('dd M yy', new Date())
                     }
