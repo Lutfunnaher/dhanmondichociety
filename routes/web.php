@@ -26,11 +26,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // Member Category Routes
 Route::resource('/category', CategoryController::class);
-Route::get('/catgory_id/{id}', [CategoryController::class, 'getCategory']);
+Route::get('/ajax/{id}', [CategoryController::class, 'getCategory']);
 
 // Member routes
 Route::resource('/member', MemberController::class);
-Route::get('/introduce/{member_id}', [MemberController::class, 'introduce']);
+Route::get('/refer/{member_id}', [MemberController::class, 'introduce']);
 
 
 
