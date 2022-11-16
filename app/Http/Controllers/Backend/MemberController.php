@@ -41,9 +41,13 @@ class MemberController extends Controller
     {
 
         // dd($request->input());
+        // return $request->membership_type;
         // $membership_id = 'GM'.$request->membership_id;
-
-        if ($request->membership_type == ''){
+        if($request->membership_type == 'executive') {
+            $member_type = $request->membership_type;
+        } else {
+            $member_type = 'non-executive';
+        }
 
             Member::create([
                 'name' => $request->name,
@@ -58,6 +62,7 @@ class MemberController extends Controller
                 'nationality' => $request->nationality,
                 'occupation' => $request->occupation,
                 'blood_group' => $request->blood_group,
+                'member_type' => $member_type,
                 'marital_status' => $request->marital_status,
                 'date_of_birth' => $request->date_of_birth,
                 'date_of_marriage' => $request->date_of_marriage,
@@ -73,9 +78,6 @@ class MemberController extends Controller
                 'introduce_member_id' => $request->introduce_member_id,
                 'how_long_known' => $request->how_long_known,
             ]);
-
-
-        }
 
 
 
@@ -190,9 +192,10 @@ class MemberController extends Controller
 
     public function introduce($member_id)
     {
+        // dd($member_id);  // GM1234567825
         // return $id;
-        $data = Member::where('member_id', $member_id)->first();
-        // return $data;
+        $data = Member::where('membership_number', $member_id)->first();
+        return $data;
 
 
         return response()->json($data);
