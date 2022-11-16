@@ -102,9 +102,7 @@ class CategoryController extends Controller
 
     public function getCategory($id)
     {
-        // dd($id);
-        $data = MembershipCategory::find($id);
-        // return $data;
-        return response()->json($data);
+        $category = MembershipCategory::find($id);
+        return response()->json($category);
     }
 }
