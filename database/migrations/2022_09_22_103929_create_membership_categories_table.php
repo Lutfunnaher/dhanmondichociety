@@ -8,7 +8,7 @@ class CreateMembershipCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 2022_11_16_time_create_table_names_table.php
      * @return void
      */
     public function up()
