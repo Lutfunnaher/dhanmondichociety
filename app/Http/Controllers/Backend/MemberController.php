@@ -18,8 +18,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::with('children')->get();
-        ddd($members);
+        // $members = Member::find('membership_number', 20221120);
+        // $members = Member::all();
+        // return $members;
     }
 
     /**
@@ -41,11 +42,6 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-
-        // dd($request->input());
-        // return $request->membership_type;
-        // $membership_id = 'GM'.$request->membership_id;
-
         // membership_type check
         if($request->membership_type == 'executive') {
             $member_type = $request->membership_type;
@@ -53,14 +49,17 @@ class MemberController extends Controller
             $member_type = 'non-executive';
         }
 
+        // generate membership number
+        $membership_number = 'GM' . $request->membership_number;
+
         // insert data to member table
         Member::create([
             'name' => $request->name,
             'father_name' => $request->father_name,
             'mother_name' => $request->mother_name,
             'spouse_ame' => $request->spouse_ame,
-            'membership_number' => 'GM' . $request->membership_number,
-            'current_membership_number' => 'GM' . $request->membership_number,
+            'membership_number' => $membership_number,
+            'current_membership_number' => $membership_number,
             'road_no' => $request->road_no,
             'address' => $request->address,
             'nid_no' => $request->nid_no,
@@ -85,19 +84,19 @@ class MemberController extends Controller
         ]);
 
         // insert data to children table
-        if(!empty($request->children_name)) {
-            $children_name = $request->children_name;
-            $gender = $request->gender;
-            $age = $request->age;
+        $children_name = $request->children_name;
+        $gender = $request->gender;
+        $age = $request->age;
 
-            $array = [$children_name, $gender, $age];
-            $count = count($children_name);
+        $array = [$children_name, $gender, $age];
+        $count = count($children_name);
 
-            for($i=0; $i<=$count-1; $i++) {
-                $child_info = array_column($array, $i);
+        for($i=0; $i<=$count-1; $i++) {
+        $child_info = array_column($array, $i);
 
+            if($request->children_name[0] !== null) {
                 Children::create([
-                    'membership_number' => 'GM' . $request->membership_number,
+                    'membership_number' => $request->membership_number,
                     'children_name' => $child_info[0],
                     'gender' => $child_info[1],
                     'age' => $child_info[2],
@@ -105,10 +104,9 @@ class MemberController extends Controller
             }
         }
 
-
         // insert data to payment table
         Payment::create([
-            'membership_number' => 'GM' . $request->membership_number,
+            'membership_number' => $request->membership_number,
             'category_of_membership' => $request->category_of_membership,
             'payment_type' => $request->payment_type,
             'payment_date' => $request->payment_date,
@@ -172,8 +170,6 @@ class MemberController extends Controller
         // return $id;
         $data = Member::where('membership_number', $member_id)->first();
         return $data;
-
-
         return response()->json($data);
     }
 }
