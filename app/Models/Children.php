@@ -12,8 +12,8 @@ class Children extends Model
     protected $guarded = ['created_at', 'updated_at'];
 //     protected $fillable = ['member_id', 'name', 'gender', 'age'];
 
-    public function member()
-    {
-        $this->belongsTo(Member::class);
-    }
+    // public function member()
+    // {
+    //     $this->belongsTo(Member::class);
+    // }
 }
