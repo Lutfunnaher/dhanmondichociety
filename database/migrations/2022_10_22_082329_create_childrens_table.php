@@ -15,12 +15,12 @@ class CreateChildrensTable extends Migration
     {
         Schema::create('childrens', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('member_id');
+            // $table->unsignedBigInteger('member_id');
             $table->string('membership_number')->nullable();
-            $table->string('children_name');
-            $table->string('gender');
-            $table->integer('age');
-            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            $table->string('children_name')->nullable();
+            $table->string('gender')->nullable();
+            $table->integer('age')->nullable();
+            // $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');php
             $table->timestamps();
         });
     }
