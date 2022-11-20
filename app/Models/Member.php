@@ -10,4 +10,14 @@ class Member extends Model
     use HasFactory;
 
     protected $guarded = ['created_at', 'updated_at'];
+
+    public function children()
+    {
+        $this->hasMany(Children::class);
+    }
+
+    public function payment()
+    {
+        $this->hasMany(Payment::class);
+    }
 }
