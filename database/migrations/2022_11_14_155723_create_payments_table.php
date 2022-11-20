@@ -15,14 +15,15 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('member_id');
+            // $table->unsignedBigInteger('member_id');
             $table->string('membership_number')->nullable();
+            $table->integer('category_of_membership')->nullable();
             $table->string('payment_type')->nullable();
             $table->date('payment_date')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('cheque_number')->nullable();
             $table->date('cheque_date')->nullable();
-            $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
+            // $table->foreign('member_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();
         });
     }
