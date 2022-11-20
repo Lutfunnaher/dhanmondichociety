@@ -11,13 +11,13 @@ class Member extends Model
 
     protected $guarded = ['created_at', 'updated_at'];
 
-    public function children()
-    {
-        $this->hasMany(Children::class);
-    }
+    // public function children()
+    // {
+    //     return $this->hasMany(Children::class);
+    // }
 
-    public function payment()
-    {
-        $this->hasMany(Payment::class);
-    }
+    // public function payment()
+    // {
+    //     $this->hasMany(Payment::class);
+    // }
 }
