@@ -172,4 +172,43 @@ class MemberController extends Controller
         return $data;
         return response()->json($data);
     }
+
+    // executive retrive
+    public function executive()
+    {
+        $members = Member::where('member_type', 'executive')->get();
+        // return $executives;
+        return view('admin.members.executive', compact('members'));
+    }
+
+    // general member
+    public function general()
+    {
+        $members = Member::where('current_membership_number', 'LIKE', '%GM%')->get();
+        return view('admin.members.general', compact('members'));
+    }
+    // life member
+    public function life()
+    {
+        $members = Member::where('current_membership_number', 'LIKE', '%LM%')->get();
+        return view('admin.members.life', compact('members'));
+    }
+    // life member
+    public function donar()
+    {
+        $members = Member::where('current_membership_number', 'LIKE', '%DM%')->get();
+        return view('admin.members.donar', compact('members'));
+    }
+    // life member
+    public function honorable()
+    {
+        $members = Member::where('current_membership_number', 'LIKE', '%HM%')->get();
+        return view('admin.members.honorable', compact('members'));
+    }
+    // life member
+    public function corporate()
+    {
+        $members = Member::where('current_membership_number', 'LIKE', '%CM%')->get();
+        return view('admin.members.corporate', compact('members'));
+    }
 }
