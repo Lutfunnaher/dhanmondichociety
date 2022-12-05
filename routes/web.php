@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\MemberController;
 use App\Http\Controllers\HomeController;
-
+use GuzzleHttp\Middleware;
 
 // Route::view('/test', 'test');
 
@@ -22,15 +22,23 @@ Route::get('/complain', [FrontendController::class, 'complain'])->name('website.
 
 
 // Backend Routes
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::prefix('admin')->middleware(['auth'])->group(function(){
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Member Category Routes
-Route::resource('/category', CategoryController::class);
-Route::get('/ajax/{id}', [CategoryController::class, 'getCategory']);
+    // Member Category Routes
+    Route::resource('/category', CategoryController::class);
+    Route::get('/ajax/{id}', [CategoryController::class, 'getCategory']);
 
-// Member routes
-Route::resource('/member', MemberController::class);
-Route::get('/refer/{member_id}', [MemberController::class, 'introduce']);
+    // Member routes
+    Route::resource('/member', MemberController::class);
+    Route::get('/members/executive', [MemberController::class, 'executive'])->name('member.executive');
+    Route::get('/members/general', [MemberController::class, 'general']);
+    Route::get('/members/life', [MemberController::class, 'life']);
+    Route::get('/members/donor', [MemberController::class, 'donor']);
+    Route::get('/members/honorable', [MemberController::class, 'honorable']);
+    Route::get('/members/corporate', [MemberController::class, 'corporate']);
+    Route::get('/refer/{member_id}', [MemberController::class, 'introduce']);
+});
 
 
 
