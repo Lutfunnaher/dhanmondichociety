@@ -15,13 +15,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('admin.dashboard.index');
-        // return view('layouts.backend');
     }
-
-    // public function add_member()
-    // {
-    //     return view('admin.dashboard.addmember');
-    // }
 
     /**
      * Show the form for creating a new resource.
