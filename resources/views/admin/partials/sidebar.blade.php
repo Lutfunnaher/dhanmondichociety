@@ -77,7 +77,7 @@
 
         {{-- add member --}}
         <li class="menu-item">
-            <a href="{{ route('member.index') }}" class="menu-link">
+            <a href="{{ route('member.create') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Add Member</div>
             </a>
@@ -100,7 +100,7 @@
                 </li>
                 @foreach (MembershipCategory::all() as $member_type)
                     <li class="menu-item">
-                        <a href="{{ URL::to('/members') }}/{{ strtolower($member_type->name) }}" class="menu-link">
+                        <a href="{{ URL::to('/admin/members') }}/{{ strtolower($member_type->name) }}" class="menu-link">
                             <div data-i18n="Without menu">{{ $member_type->name }} Member</div>
                         </a>
                     </li>
