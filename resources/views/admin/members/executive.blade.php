@@ -6,7 +6,6 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-
     <h4 class="fw-bold py-3 mb-4">
       <span class="text-muted fw-light">Member /</span> Executive
     </h4>
@@ -30,24 +29,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($members as $executive)
-
-
+                                    @foreach ($members as $member)
                                     <tr>
                                         <td>1</td>
-                                        <td>{{ $executive->name }}</td>
-                                        <td>{{ $executive->membership_number }}</td>
-                                        <td>{{ $executive->email }}</td>
-                                        <td>{{ $executive->mobile }}</td>
+                                        <td>{{ $member->name }}</td>
+                                        <td>{{ $member->membership_number }}</td>
+                                        <td>{{ $member->email }}</td>
+                                        <td>{{ $member->mobile }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="{{ route('member.show', $member->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                                             <a href="" class="btn btn-success btn-sm"><i class="fa-solid fa-pen"></i></a>
                                             <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -59,10 +54,7 @@
 
         <!-- Total Revenue -->
     </div>
-
-
-
-
+</div>
 
 @endsection
 
