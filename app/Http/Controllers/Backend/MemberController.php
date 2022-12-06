@@ -96,7 +96,7 @@ class MemberController extends Controller
 
             if($request->children_name[0] !== null) {
                 Children::create([
-                    'membership_number' => $request->membership_number,
+                    'membership_number' => $membership_number,
                     'children_name' => $child_info[0],
                     'gender' => $child_info[1],
                     'age' => $child_info[2],
@@ -106,7 +106,7 @@ class MemberController extends Controller
 
         // insert data to payment table
         Payment::create([
-            'membership_number' => $request->membership_number,
+            'membership_number' => $membership_number,
             'category_of_membership' => $request->category_of_membership,
             'payment_type' => $request->payment_type,
             'payment_date' => $request->payment_date,
@@ -126,7 +126,14 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        //
+        // get membership_number
+        $membership_number = $member->membership_number;
+        // get children info
+        $child_info = Children::where('membership_number', $membership_number)->get();
+        // get payment info
+        $payment = Payment::where('membership_number', $membership_number)->first();
+
+        return view('admin.members.show', compact('member', 'child_info', 'payment'));
     }
 
     /**
@@ -194,10 +201,10 @@ class MemberController extends Controller
         return view('admin.members.life', compact('members'));
     }
     // life member
-    public function donar()
+    public function donor()
     {
         $members = Member::where('current_membership_number', 'LIKE', '%DM%')->get();
-        return view('admin.members.donar', compact('members'));
+        return view('admin.members.donor', compact('members'));
     }
     // life member
     public function honorable()
