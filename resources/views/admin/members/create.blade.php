@@ -442,7 +442,7 @@
                     type: 'GET',
                     dataType: 'json',
                     data: {id: cId},
-                    url: `/ajax/${cId}`,
+                    url: `/admin/ajax/${cId}`,
                     success: function(d) {
                         $('#categoryAmount').val(d.fees);
                     }
