@@ -18,9 +18,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        // $members = Member::find('membership_number', 20221120);
-        // $members = Member::all();
-        // return $members;
+        //
     }
 
     /**
@@ -42,6 +40,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         // membership_type check
         if($request->membership_type == 'executive') {
             $member_type = $request->membership_type;
@@ -91,10 +90,9 @@ class MemberController extends Controller
         $array = [$children_name, $gender, $age];
         $count = count($children_name);
 
-        for($i=0; $i<=$count-1; $i++) {
-        $child_info = array_column($array, $i);
-
-            if($request->children_name[0] !== null) {
+        // if($request->children_name[0] !== null) {
+            for($i=0; $i<=$count-1; $i++) {
+            $child_info = array_column($array, $i);
                 Children::create([
                     'membership_number' => $membership_number,
                     'children_name' => $child_info[0],
@@ -102,7 +100,7 @@ class MemberController extends Controller
                     'age' => $child_info[2],
                 ]);
             }
-        }
+        // }
 
         // insert data to payment table
         Payment::create([
@@ -144,7 +142,9 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        $categories = MembershipCategory::all();
+        $payments = Payment::where('membership_number', $member->membership_number)->get();
+        return view('admin.members.edit', compact('categories', 'member', 'payments'));
     }
 
     /**
@@ -156,7 +156,26 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        // dd($request->input());
+
+
+        // if ($request->category_of_membership == null && $request->cheque_number == null && $request->cheque_date == null) {
+            // return 'no update';
+            // Payment::create([
+            //     'membership_number' => $member->membership_number,
+            //     'category_of_membership' => $request->category_of_membership,
+            //     'payment_type' => $request->payment_type,
+            //     'payment_date' => $request->payment_date,
+            //     'bank_name' => $request->bank_name,
+            //     'cheque_number' => $request->cheque_number,
+            //     'cheque_date' => $request->cheque_date
+            // ]);
+        // } else {
+        //     return 'update';
+        // }
+
+
+        return redirect()->back();
     }
 
     /**
@@ -191,31 +210,71 @@ class MemberController extends Controller
     // general member
     public function general()
     {
-        $members = Member::where('current_membership_number', 'LIKE', '%GM%')->get();
+        // select * from member where membership_category_id = 1 and member_type = non-executive
+
+
+        // Member::where('membership_category_id', '1')->where();
+        // Member::where('member_type', 'non-executive')->get();
+
+
+
+
+        $members = Member::where(function($query)
+        {
+            $query->where('membership_category_id', '1');
+        })->where(function($query){
+            $query->where('member_type', 'non-executive');
+        })->get();
         return view('admin.members.general', compact('members'));
     }
+
     // life member
     public function life()
     {
-        $members = Member::where('current_membership_number', 'LIKE', '%LM%')->get();
+        $members = Member::where(function($query)
+        {
+            $query->where('membership_category_id', '2');
+        })->where(function($query){
+            $query->where('member_type', 'non-executive');
+        })->get();
         return view('admin.members.life', compact('members'));
     }
-    // life member
+
+    // donor member
     public function donor()
     {
-        $members = Member::where('current_membership_number', 'LIKE', '%DM%')->get();
+        $members = Member::where(function($query)
+        {
+            $query->where('membership_category_id', '3');
+        })->where(function($query){
+            $query->where('member_type', 'non-executive');
+        })->get();
         return view('admin.members.donor', compact('members'));
     }
-    // life member
+
+    // life honorable
     public function honorable()
     {
-        $members = Member::where('current_membership_number', 'LIKE', '%HM%')->get();
+        $members = Member::where(function($query)
+        {
+            $query->where('membership_category_id', '4');
+        })->where(function($query){
+            $query->where('member_type', 'non-executive');
+        })->get();
         return view('admin.members.honorable', compact('members'));
     }
-    // life member
+
+    // corporate member
     public function corporate()
     {
-        $members = Member::where('current_membership_number', 'LIKE', '%CM%')->get();
+        $members = Member::where(function($query)
+        {
+            $query->where('membership_category_id', '5');
+        })->where(function($query){
+            $query->where('member_type', 'non-executive');
+        })->get();
         return view('admin.members.corporate', compact('members'));
     }
+
+
 }
