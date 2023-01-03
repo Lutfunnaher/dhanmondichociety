@@ -275,7 +275,7 @@
                                         <select id="mCategory" name="category_of_membership" id="" class="form-control">
                                             <option value="" style="display: none">Select</option>
                                             @forelse ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->name }}">{{ $category->name }}</option>
                                             @empty
                                                 <option value="" class="text-warning" disabled>Please add member category first!</option>
                                             @endforelse
@@ -382,8 +382,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
     </div>
 @endsection
 
@@ -453,19 +451,23 @@
             $('#introduceId').on('change', function(e){
                 e.preventDefault();
                 let member_id = $('#introduceId').val(); // GM202208310134
-                console.log(member_id);
+                // console.log(member_id);
                 $.ajax({
                     type: 'GET',
                     dataType: 'json',
                     data: { member_id: member_id },
-                    url: `/refer/${member_id}`,
+                    url: `/admin/refer/${member_id}`,
                     success: function(data) {
-                        console.log(data);
+                        // console.log(data);
+
+
                         $('#introMName').val(data.name);
                         $('#introMDate').val(data.created_at); // $.datepicker.formatDate('dd M yy', new Date())
+                        let date = data.created_at;
+                        let day = getDay(date);
+                        console.log(day);
                     }
                 });
-
             });
         });
     </script>
