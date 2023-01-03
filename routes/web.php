@@ -6,7 +6,6 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\MemberController;
 use App\Http\Controllers\HomeController;
-use GuzzleHttp\Middleware;
 
 // Route::view('/test', 'test');
 
@@ -49,3 +48,11 @@ Auth::routes(['register' => false]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // test
+// route type
+/**
+ * get - get
+ * post - post
+ * put - single data update
+ * patch - multiple data update
+ * delete - delete
+ */
