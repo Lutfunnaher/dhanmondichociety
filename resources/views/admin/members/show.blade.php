@@ -172,7 +172,22 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center pt-3">
-                    <a href="{{ route('member.executive') }}" class="btn btn-primary me-3">Back</a>
+                        @if ($member->member_type == 'executive')
+                            <a href="{{ url('admin/members/executive') }}" class="btn btn-primary me-3">Back</a>
+                        @elseif($member->member_type == 'non-executive')
+                            @if ($member->membership_category_id == '1')
+                            <a href="{{ url('admin/members/general') }}" class="btn btn-primary me-3">Back</a>
+                            @elseif ($member->membership_category_id == '2')
+                            <a href="{{ url('admin/members/life') }}" class="btn btn-primary me-3">Back</a>
+                            @elseif ($member->membership_category_id == '3')
+                            <a href="{{ url('admin/members/donor') }}" class="btn btn-primary me-3">Back</a>
+                            @elseif ($member->membership_category_id == '4')
+                            <a href="{{ url('admin/members/honorable') }}" class="btn btn-primary me-3">Back</a>
+                            @elseif ($member->membership_category_id == '5')
+                            <a href="{{ url('admin/members/corporate') }}" class="btn btn-primary me-3">Back</a>
+                            @endif
+                        @endif
+
                 </div>
             </div>
         </div>
