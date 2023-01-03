@@ -42,8 +42,8 @@ class MemberController extends Controller
     {
         // dd($request->all());
         // membership_type check
-        if($request->membership_type == 'executive') {
-            $member_type = $request->membership_type;
+        if($request->membership_type == 'on') {
+            $member_type = 'executive';
         } else {
             $member_type = 'non-executive';
         }
@@ -159,22 +159,28 @@ class MemberController extends Controller
         // dd($request->input());
 
 
-        // if ($request->category_of_membership == null && $request->cheque_number == null && $request->cheque_date == null) {
-            // return 'no update';
-            // Payment::create([
-            //     'membership_number' => $member->membership_number,
-            //     'category_of_membership' => $request->category_of_membership,
-            //     'payment_type' => $request->payment_type,
-            //     'payment_date' => $request->payment_date,
-            //     'bank_name' => $request->bank_name,
-            //     'cheque_number' => $request->cheque_number,
-            //     'cheque_date' => $request->cheque_date
-            // ]);
-        // } else {
-        //     return 'update';
-        // }
+        // dd($request->input());
+        if ($request->membership_type == 'on') {
+            $membership_type = 'executive';
+        } else {
+            $membership_type = 'non-executive';
+        }
 
+        // membertype update
+        $member->member_type = $membership_type;
+        $member->save();
 
+        if (!is_null($request->category_of_membership)) {
+            Payment::create([
+                'membership_number' => $member->membership_number,
+                'category_of_membership' => $request->category_of_membership,
+                'payment_type' => $request->payment_type,
+                'payment_date' => $request->payment_date,
+                'bank_name' => $request->bank_name,
+                'cheque_number' => $request->cheque_number,
+                'cheque_date' => $request->cheque_date
+            ]);
+        } 
         return redirect()->back();
     }
 
