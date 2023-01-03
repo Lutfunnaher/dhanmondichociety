@@ -38,7 +38,7 @@
                                         <td>{{ $member->mobile }}</td>
                                         <td>
                                             <a href="{{ route('member.show', $member->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                            <a href="" class="btn btn-success btn-sm"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="{{ route('member.edit', $member->id) }}" class="btn btn-success btn-sm"><i class="fa-solid fa-pen"></i></a>
                                             <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
