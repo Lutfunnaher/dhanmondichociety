@@ -101,11 +101,11 @@
                         <div class="mb-3">
                             @if ($member->member_type == 'non-executive')
                             <div class="input-group">
-                                <input type="checkbox" name="membership_type" value="non-executive">&nbsp;Executive (Check the tick mark for executive member)
+                                <input type="checkbox" name="membership_type">&nbsp;Executive (Check the tick mark for executive member)
                             </div>
                             @else
                             <div class="input-group">
-                                <input type="checkbox" name="membership_type" value="executive" checked>&nbsp;Executive (Check the tick mark for executive member)
+                                <input type="checkbox" name="membership_type" checked>&nbsp;Executive (Check the tick mark for executive member)
                             </div>
                             @endif
                         </div>
