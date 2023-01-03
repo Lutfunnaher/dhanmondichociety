@@ -25,6 +25,7 @@
                                         <th>Membership ID</th>
                                         <th>Email</th>
                                         <th>Contact No</th>
+                                        <th>Membersip Category</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -36,9 +37,10 @@
                                         <td>{{ $member->membership_number }}</td>
                                         <td>{{ $member->email }}</td>
                                         <td>{{ $member->mobile }}</td>
+                                        <td>{{ $member->membership_category_id }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
-                                            <a href="" class="btn btn-success btn-sm"><i class="fa-solid fa-pen"></i></a>
+                                            <a href="{{ route('member.show', $member->id) }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="{{ route('member.edit', $member->id) }}" class="btn btn-success btn-sm"><i class="fa-solid fa-pen"></i></a>
                                             <a href="" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
