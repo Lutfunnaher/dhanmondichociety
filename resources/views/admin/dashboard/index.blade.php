@@ -1,5 +1,14 @@
 @extends('layouts.backend')
 
+@php
+    $members = count(App\Models\Member::all());
+    $executive = count(App\Models\Member::where('member_type', 'executive')->get());
+    $general = count(App\Models\Member::where('membership_category_id', '1' && 'member_type', 'non-executive')->get());
+    $life = count(App\Models\Member::where('membership_category_id', '2')->get());
+    $honorable = count(App\Models\Member::where('membership_category_id', '4')->get());
+    $donor = count(App\Models\Member::where('membership_category_id', '3')->get());
+    $corporate = count(App\Models\Member::where('membership_category_id', '5')->get());
+@endphp
 @section('content')
         <div class="row mb-3">
 
@@ -13,7 +22,7 @@
                             </div>
                         </div>
                         <h5 class="card-title mb-2 pt-2" >Total Members</h5>
-                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>155</p>
+                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>{{ $members }}</p>
                     </div>
                 </div>
             </div>
@@ -27,7 +36,7 @@
                             </div>
                         </div>
                         <h5 class="card-title mb-2 pt-2" >Executive Members</h5>
-                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>155</p>
+                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>{{ $executive }}</p>
                     </div>
                 </div>
             </div>
@@ -41,7 +50,7 @@
                             </div>
                         </div>
                         <h5 class="card-title mb-2 pt-2" >Honorary Members</h5>
-                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>155</p>
+                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>{{ $honorable }}</p>
                     </div>
                 </div>
             </div>
@@ -58,7 +67,7 @@
                             </div>
                         </div>
                         <h5 class="card-title mb-2 pt-2" >General Members</h5>
-                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>155</p>
+                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>{{ $general }}</p>
                     </div>
                 </div>
             </div>
@@ -72,7 +81,7 @@
                             </div>
                         </div>
                         <h5 class="card-title mb-2 pt-2" >Life Members</h5>
-                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>155</p>
+                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>{{ $life }}</p>
                     </div>
                 </div>
             </div>
@@ -86,13 +95,28 @@
                             </div>
                         </div>
                         <h5 class="card-title mb-2 pt-2" >Donar Members</h5>
-                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>155</p>
+                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>{{ $donor }}</p>
                     </div>
                 </div>
             </div>
+            
         </div>
 
         <div class="row mb-3">
+            {{-- Corporate Members --}}
+            <div class="col-lg-4 col-md-6 col-6 mb-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-start justify-content-between">
+                            <div class="avatar flex-shrink-0 custom-awesome">
+                                <i class="fa-solid fa-users-line mb-3"></i>
+                            </div>
+                        </div>
+                        <h5 class="card-title mb-2 pt-2" >Corporate Members</h5>
+                        <p class="text-info fw-semibold"><i class="bx bx-up-arrow-alt"></i>{{ $corporate }}</p>
+                    </div>
+                </div>
+            </div>
             {{-- Albums --}}
             <div class="col-lg-4 col-md-6 col-6 mb-12">
                 <div class="card">
