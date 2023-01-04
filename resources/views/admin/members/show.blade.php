@@ -5,7 +5,7 @@
         <div class="card-body">
             <div class="user-avatar-section">
                 <div class=" d-flex align-items-center flex-column">
-                    <img class="img-fluid rounded my-4" src="{{ asset('backend') }}/assets/img/avatars/10.png" height="110"
+                    <img class="img-fluid rounded my-4" src="{{ asset('storage/member/'.$member->image) }}" height="110"
                         width="110" alt="User avatar">
                     <div class="user-info text-center">
                         <h2 class="mb-2">{{ $member->name }}</h2>
