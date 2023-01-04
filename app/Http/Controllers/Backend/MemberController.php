@@ -40,7 +40,21 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // validation
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'father_name' => 'required',
+        //     'mother_name' => 'required',
+        //     'membership_number' => 'required',
+        //     'nid_no' => 'required|numeric',
+        //     'mobile' => 'required|numeric',
+        //     'category_of_membership' => 'required',
+        //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+        //     'date_of_birth' => 'required',
+        //     'payment_date' => 'required_if:payment_type,cash',
+        //     'bank_name' => 'required_if:payment_type,cheque'
+        // ]);
+
         // membership_type check
         if($request->membership_type == 'on') {
             $member_type = 'executive';
@@ -51,8 +65,12 @@ class MemberController extends Controller
         // generate membership number
         $membership_number = 'GM' . $request->membership_number;
 
+        // image getClientOriginalName
+        // dd($request->file('image'));
+        
+
         // insert data to member table
-        Member::create([
+        $member = Member::create([
             'name' => $request->name,
             'father_name' => $request->father_name,
             'mother_name' => $request->mother_name,
@@ -81,6 +99,16 @@ class MemberController extends Controller
             'introduce_member_id' => $request->introduce_member_id,
             'how_long_known' => $request->how_long_known,
         ]);
+
+        // image
+        // if ($request->has('image')) {
+        $image = $request->image;
+        $imageNewName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move('storage/member/', $imageNewName);
+        // $post->image = '/storage/post/' . $imageNewName; // dose not working....
+        $member->image = $imageNewName;
+        $member->save();
+        // }
 
         // insert data to children table
         $children_name = $request->children_name;
