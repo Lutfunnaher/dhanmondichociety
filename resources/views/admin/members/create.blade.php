@@ -17,9 +17,9 @@
                                 <div class="mb-3">
                                     <div class="input-group">
                                         <span class="input-group-text">Member Name *</span>
-                                        <input type="text" class="form-control" placeholder="Member Name"
-                                            name="name">
+                                        <input type="text" class="form-control" placeholder="Member Name" name="name">
                                     </div>
+                                    @error('name') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
@@ -27,6 +27,7 @@
                                         <input type="text" class="form-control" placeholder="Father Name"
                                             name="father_name">
                                     </div>
+                                    @error('father_name') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
@@ -34,6 +35,7 @@
                                         <input type="text" class="form-control" placeholder="Mother Name"
                                             name="mother_name">
                                     </div>
+                                    @error('mother_name') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
@@ -48,6 +50,7 @@
                                         <input type="text" class="form-control" placeholder="Membership ID"
                                             name="membership_number">
                                     </div>
+                                    @error('membership_number') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
@@ -116,10 +119,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <span class="input-group-text">National ID</span>
+                                        <span class="input-group-text">National ID*</span>
                                         <input type="text" class="form-control" placeholder="National ID"
                                             name="nid_no">
                                     </div>
+                                    @error('nid_no') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
@@ -169,10 +173,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <span class="input-group-text">Date of Birth</span>
+                                        <span class="input-group-text">Date of Birth*</span>
                                         <input class="form-control" type="date" name="date_of_birth"
                                             placeholder="Date of Birth">
                                     </div>
+                                    @error('date_of_birth') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
@@ -190,9 +195,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <span class="input-group-text">Mobile</span>
+                                        <span class="input-group-text">Mobile*</span>
                                         <input type="text" class="form-control" placeholder="Mobile" name="mobile">
                                     </div>
+                                    @error('mobile') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
@@ -243,7 +249,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <input type="checkbox" name="membership_type" value="executive">&nbsp;Executive (Check the tick mark for executive member)
+                                        <input type="checkbox" name="membership_type">&nbsp;Executive (Check the tick mark for executive member)
                                     </div>
                                 </div>
                             </div>
@@ -275,16 +281,17 @@
                                         <select id="mCategory" name="category_of_membership" id="" class="form-control">
                                             <option value="" style="display: none">Select</option>
                                             @forelse ($categories as $category)
-                                                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @empty
                                                 <option value="" class="text-warning" disabled>Please add member category first!</option>
                                             @endforelse
                                         </select>
                                     </div>
+                                    @error('category_of_membership') <div class="text-danger">{{ $message }}</div> @enderror
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon11">Amount*</span>
+                                        <span class="input-group-text" id="basic-addon11">Amount</span>
                                         <input id="categoryAmount" type="text" class="form-control" placeholder="Membership Fees"
                                             name="membership_fees" disabled>
                                     </div>
@@ -302,10 +309,12 @@
                                 </div>
                                 <div class="mb-3">
                                     <div id="cashPayment" class="input-group">
-                                        <span class="input-group-text">Payment Date</span>
-                                        <input class="form-control" id="pDate" type="date" name="payment_date"
+                                        <span class="input-group-text">Payment Date*</span>
+                                        <input class="form-control" id="pDate"  type="date" name="payment_date"
                                             placeholder="Payment Date">
                                     </div>
+                                    @error('payment_date') <div class="text-danger">{{ $message }}</div> @enderror
+
                                     <div id="chequePayment">
                                         <div class="mt-3">
                                             <div class="input-group">
@@ -335,7 +344,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <span class="input-group-text">Introduce Membership ID*</span>
+                                        <span class="input-group-text">Introduce Membership ID</span>
                                         <input id="introduceId" type="text" class="form-control" placeholder="Member ID"
                                             name="introduce_member_id">
                                     </div>
@@ -351,17 +360,14 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <div class="input-group">
-                                        <span class="input-group-text">Introduce Member Joining
-                                            Date</span>
-                                        <input type="text" class="form-control" placeholder="Joining Date" id="introMDate"
-                                            name="intro_member_joining_date" disabled>
+                                        <span class="input-group-text">Introduce Member Joining Date</span>
+                                        <input type="text" class="form-control" placeholder="Joining Date" id="introMDate" name="intro_member_joining_date" disabled>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <div class="input-group">
                                         <span class="input-group-text">How long known?</span>
-                                        <input class="form-control" type="text" name="how_long_known"
-                                            placeholder="How long known">
+                                        <input class="form-control" type="text" name="how_long_known" placeholder="How long known">
                                     </div>
                                 </div>
                             </div>
@@ -369,10 +375,11 @@
                         <hr>
                         <div class="row">
                             <div class="col-6">
-                                <h6>Member Image</h6>
+                                <h6>Member Image*</h6>
                                 <div class="mb-3">
-                                    <input class="form-control" type="file" name="image">
+                                    <input type="file" class="form-control" name="image">
                                 </div>
+                                @error('image') <div class="text-danger">{{ $message }}</div> @enderror
                             </div>
                         </div>
                         <hr>
