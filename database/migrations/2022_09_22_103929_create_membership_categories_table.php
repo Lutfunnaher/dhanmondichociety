@@ -15,7 +15,7 @@ class CreateMembershipCategoriesTable extends Migration
     {
         Schema::create('membership_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->integer('fees');
             $table->timestamps();
         });
